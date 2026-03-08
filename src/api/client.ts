@@ -24,7 +24,3 @@ apiClient.interceptors.request.use(async (config) => {
 
   return config;
 });
-
-apiClient.get("/health").then((res) => {
-  console.log("API HEALTH:", res.data);
-});

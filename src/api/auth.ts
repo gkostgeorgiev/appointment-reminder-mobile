@@ -7,7 +7,7 @@ export interface LoginPayload {
 
 export const authApi = {
   async login(data: LoginPayload) {
-    const response = await apiClient.post("/auth/login", data);
+    const response = await apiClient.post("/professionals/login", data);
     return response.data;
   },
 };

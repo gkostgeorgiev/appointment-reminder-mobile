@@ -5,16 +5,10 @@ import { HelloWave } from "@/components/hello-wave";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { Link } from "expo-router";
-import { useEffect } from "react";
-import { apiBase, apiClient } from "../../src/api/client";
+import { Link, router } from "expo-router";
 
 export default function HomeScreen() {
-  useEffect(() => {
-    apiBase.get("/health").then((res) => {
-      console.log("API HEALTH:", res.data);
-    });
-  }, []);
+  console.log("hello world from HomeScreen");
 
   return (
     <ParallaxScrollView
@@ -27,7 +21,7 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome Hello World!</ThemedText>
+        <ThemedText type="title">Welcome !</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
