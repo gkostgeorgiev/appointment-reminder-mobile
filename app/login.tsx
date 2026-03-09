@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { authApi } from "../src/api/auth";
-import { tokenStorage } from "../src/auth/tokenStorage";
+import { saveToken } from "../src/auth/tokenStorage";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export default function LoginScreen() {
       const res = await authApi.login({ email, password });
       console.log("LOGIN RESPONSE:", res);
 
-      await tokenStorage.setToken(res.data.token);
+      await saveToken(res.data.token);
 
       console.log("Login successful");
     } catch (error) {
