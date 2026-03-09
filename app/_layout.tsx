@@ -9,6 +9,7 @@ import { AuthProvider } from "../src/auth/AuthProvider";
 
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useProtectedRoute } from "@/src/auth/useProtectedRoute";
+import { QueryProvider } from "@/src/providers/QueryProvider";
 
 export const unstable_settings = {
   anchor: "(tabs)",
@@ -26,7 +27,9 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <AuthProvider>
-        <RootNavigator />
+        <QueryProvider>
+          <RootNavigator />
+        </QueryProvider>
       </AuthProvider>
     </ThemeProvider>
   );
