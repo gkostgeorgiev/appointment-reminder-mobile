@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getToken, saveToken, deleteToken } from "./tokenStorage";
+import { setLogoutHandler } from "./authEvents";
+import { router } from "expo-router";
 
 type AuthContextType = {
   token: string | null;
   loading: boolean;
-  login: (token: string) => Promise<void>;
+  establishSession: (token: string) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -24,7 +26,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     loadToken();
   }, []);
 
-  async function login(newToken: string) {
+  async function establishSession(newToken: string) {
     await saveToken(newToken);
     setToken(newToken);
   }
@@ -32,14 +34,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function logout() {
     await deleteToken();
     setToken(null);
+    router.replace("/login");
   }
+
+  useEffect(() => {
+    setLogoutHandler(logout);
+  }, []);
 
   return (
     <AuthContext.Provider
       value={{
         token,
         loading,
-        login,
+        establishSession,
         logout,
       }}
     >

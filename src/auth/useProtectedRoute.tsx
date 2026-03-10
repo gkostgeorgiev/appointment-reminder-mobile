@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useRouter, useSegments } from "expo-router";
+import { useEffect } from "react";
 import { useAuth } from "./AuthProvider";
 
 export function useProtectedRoute() {
@@ -17,7 +17,7 @@ export function useProtectedRoute() {
     }
 
     if (token && inAuthGroup) {
-      router.replace("/(tabs)/schedule");
+      router.replace("/(tabs)");
     }
-  }, [token, loading]);
+  }, [token, loading, segments, router]);
 }

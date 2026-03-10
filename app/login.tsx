@@ -1,32 +1,30 @@
-import { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { useAuth } from "@/src/auth/AuthProvider";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { authApi } from "../src/api/auth";
-import { saveToken } from "../src/auth/tokenStorage";
 
 export default function LoginScreen() {
+  const router = useRouter();
+  const { establishSession } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    console.log('hello world from handle Login');
     try {
       const res = await authApi.login({ email, password });
-      console.log("LOGIN RESPONSE:", res);
 
-      await saveToken(res.data.token);
+      const token = res?.data?.token ?? res?.token;
+      if (!token) {
+        throw new Error("Login response did not include token");
+      }
 
-      console.log("Login successful");
+      await establishSession(token);
+      router.replace("/(tabs)");
     } catch (error) {
       console.log("Login failed", error);
     }
   };
-
-  console.log('hello world from LoginScreen');
-
-  useEffect(() => {
-    console.log('email: ', email);
-    console.log('password: ', password);
-  }, [email, password]);
 
   return (
     <View style={styles.container}>

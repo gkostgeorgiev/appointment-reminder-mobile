@@ -1,5 +1,5 @@
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { useTodayAppointments } from "@/hooks/useTodayAppointments";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 export default function TodayScreen() {
   const { data, isLoading, error } = useTodayAppointments();
@@ -35,6 +35,9 @@ export default function TodayScreen() {
       keyExtractor={(item) => item._id}
       renderItem={({ item }) => (
         <View style={{ padding: 16, borderBottomWidth: 1 }}>
+          <Text style={{ fontSize: 22, fontWeight: "bold", margin: 16 }}>
+            Today's Schedule
+          </Text>
           <Text>{item.customer.name}</Text>
           <Text>{item.time}</Text>
         </View>

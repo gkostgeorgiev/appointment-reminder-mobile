@@ -1,13 +1,16 @@
 import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
+import { Button, Platform, StyleSheet } from "react-native";
 
 import { HelloWave } from "@/components/hello-wave";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { Link, router } from "expo-router";
+import { useAuth } from "@/src/auth/AuthProvider";
+import { Link } from "expo-router";
+
 
 export default function HomeScreen() {
+  const { logout } = useAuth();
   console.log("hello world from HomeScreen");
 
   return (
@@ -85,6 +88,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+      <Button title="Logout" onPress={() => logout()} />
     </ParallaxScrollView>
   );
 }
