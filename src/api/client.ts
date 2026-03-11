@@ -44,6 +44,6 @@ apiClient.interceptors.request.use((config) => {
 });
 
 apiClient.interceptors.response.use((response) => {
-  console.log("API RESPONSE:", response.status, response.config.url);
+  console.log("API RESPONSE:", response.status, response.config.url, response);
   return response;
 });

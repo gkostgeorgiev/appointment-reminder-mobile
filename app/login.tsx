@@ -1,7 +1,7 @@
 import { useAuth } from "@/src/auth/AuthProvider";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { authApi } from "../src/api/auth";
 
 export default function LoginScreen() {
@@ -44,8 +44,17 @@ export default function LoginScreen() {
         secureTextEntry
         style={styles.input}
       />
+      <TouchableOpacity
+        style={{ marginVertical: 20 }}
+        onPress={() => router.replace("/register")}
+      >
+        <Text>
+          Don't have an account?{" "}
+          <Text style={{ fontWeight: "bold" }}>Register here</Text>
+        </Text>
+      </TouchableOpacity>
 
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login" onPress={handleLogin} disabled={!email || !password} />
     </View>
   );
 }

@@ -10,7 +10,8 @@ export function useProtectedRoute() {
   useEffect(() => {
     if (loading) return;
 
-    const inAuthGroup = segments[0] === "login";
+    const authRoutes = new Set(["login", "register"]);
+    const inAuthGroup = authRoutes.has(segments[0] ?? "");
 
     if (!token && !inAuthGroup) {
       router.replace("/login");

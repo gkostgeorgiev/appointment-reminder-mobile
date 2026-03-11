@@ -4,6 +4,7 @@
  */
 
 import { Platform } from 'react-native';
+import { MD3LightTheme } from "react-native-paper"
 
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
@@ -51,3 +52,13 @@ export const Fonts = Platform.select({
     mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   },
 });
+
+export const theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: "#2563EB",
+    secondary: "#06B6D4",
+    background: "#F8FAFC"
+  }
+}
