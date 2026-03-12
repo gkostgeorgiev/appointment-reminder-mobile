@@ -1,10 +1,10 @@
 import { useAuth } from "@/src/auth/AuthProvider"
 import { useRouter } from "expo-router"
 import { useState } from "react"
-import { View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { Button, Text, TextInput } from "react-native-paper"
 import { authApi } from "../api/auth"
+import { Text as RNText, View } from "react-native"
+import { Button, Text as PaperText, TextInput } from "react-native-paper"
 
 export default function LoginScreen() {
   const router = useRouter()
@@ -36,9 +36,9 @@ export default function LoginScreen() {
     <SafeAreaView className="flex-1 bg-slate-50">
       <View className="flex-1 justify-center px-10">
 
-        <Text variant="headlineMedium" className="text-center mb-10">
+        <PaperText variant="headlineMedium" className="text-center mb-10">
           Sign in
-        </Text>
+        </PaperText>
 
         <View className="gap-4">
 
@@ -70,15 +70,15 @@ export default function LoginScreen() {
 
         </View>
 
-        <Text className="text-center mt-6">
+        <RNText className="text-center mt-6">
           Don't have an account?{" "}
-          <Text
-            className="font-semibold"
+          <RNText
+            className="font-extrabold"
             onPress={() => router.replace("/register")}
           >
             Register here
-          </Text>
-        </Text>
+          </RNText>
+        </RNText>
 
       </View>
     </SafeAreaView>

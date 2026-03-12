@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { View, Text, TextInput, Button, TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
 import { authApi } from "@/src/api/auth";
 import { useAuth } from "@/src/auth/AuthProvider";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { Text as RNText, View } from "react-native";
+import { Button, Text as PaperText, TextInput } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function RegisterScreen() {
   const router = useRouter();
@@ -21,13 +23,12 @@ export default function RegisterScreen() {
         password,
       });
 
-      if (res.ok) {
-        const token = res.data.token;
+      const token = res?.data?.token ?? res?.token;
+      if (!token) throw new Error("Register response did not include token");
 
-        await establishSession(token);
+      await establishSession(token);
 
-        router.replace("/schedule");
-      }
+      router.replace("/(tabs)");
     } catch (err) {
       console.log("REGISTER ERROR:", err);
     } finally {
@@ -36,40 +37,50 @@ export default function RegisterScreen() {
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Create Account</Text>
+    <SafeAreaView className="flex-1 bg-slate-50">
+      <View className="flex-1 justify-center px-10">
+        <PaperText variant="headlineMedium" className="text-center mb-10">
+          Create account
+        </PaperText>
 
-      <TextInput
-        placeholder="Email"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={setEmail}
-        style={{ borderWidth: 1, padding: 10, marginBottom: 12 }}
-      />
+        <View className="gap-4">
+          <TextInput
+            label="Email"
+            mode="outlined"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
+          />
 
-      <TextInput
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        style={{ borderWidth: 1, padding: 10, marginBottom: 12 }}
-      />
+          <TextInput
+            label="Password"
+            mode="outlined"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
 
-      <Button
-        title={loading ? "Creating..." : "Register"}
-        onPress={handleRegister}
-        disabled={!email || !password || loading}
-      />
+          <Button
+            mode="contained"
+            loading={loading}
+            disabled={!email || !password || loading}
+            onPress={handleRegister}
+            className="mt-2"
+          >
+            Register
+          </Button>
+        </View>
 
-      <TouchableOpacity
-        style={{ marginTop: 20 }}
-        onPress={() => router.push("/login")}
-      >
-        <Text>
+        <RNText className="text-center mt-6">
           Already have an account?{" "}
-          <Text style={{ fontWeight: "bold" }}>Sign in here</Text>
-        </Text>
-      </TouchableOpacity>
-    </View>
+          <RNText
+            className="font-extrabold"
+            onPress={() => router.replace("/login")}
+          >
+            Sign in here
+          </RNText>
+        </RNText>
+      </View>
+    </SafeAreaView>
   );
 }
