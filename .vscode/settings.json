@@ -5,16 +5,19 @@
     "source.sortMembers": "explicit"
   },
   "workbench.colorCustomizations": {
-    "activityBar.background": "#464F0E",
-    "titleBar.activeBackground": "#626F13",
-    "titleBar.activeForeground": "#F9FBEA",
-    "titleBar.inactiveBackground": "#464F0E",
-    "titleBar.inactiveForeground": "#F9FBEA",
-    "statusBar.background": "#464F0E",
-    "statusBar.foreground": "#F9FBEA",
-    "statusBar.debuggingBackground": "#464F0E",
-    "statusBar.debuggingForeground": "#F9FBEA",
-    "statusBar.noFolderBackground": "#464F0E",
-    "statusBar.noFolderForeground": "#F9FBEA"
+    "activityBar.background": "#0F4C5C",
+    "activityBar.foreground": "#E6FFFB",
+
+    "titleBar.activeBackground": "#146C7A",
+    "titleBar.activeForeground": "#E6FFFB",
+    "titleBar.inactiveBackground": "#0F4C5C",
+    "titleBar.inactiveForeground": "#A7D8D3",
+
+    "statusBar.background": "#0F4C5C",
+    "statusBar.foreground": "#E6FFFB",
+    "statusBar.debuggingBackground": "#146C7A",
+    "statusBar.debuggingForeground": "#E6FFFB",
+    "statusBar.noFolderBackground": "#0F4C5C",
+    "statusBar.noFolderForeground": "#E6FFFB"
   }
 }
