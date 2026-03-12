@@ -1,4 +1,4 @@
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useColorScheme } from "@/src/hooks/use-color-scheme";
 import { AuthProvider } from "@/src/auth/AuthProvider";
 import { useProtectedRoute } from "@/src/auth/useProtectedRoute";
 import { QueryProvider } from "@/src/providers/QueryProvider";

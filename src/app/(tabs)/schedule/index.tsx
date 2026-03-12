@@ -1,4 +1,4 @@
-import { useTodayAppointments } from "@/hooks/useTodayAppointments";
+import { useTodayAppointments } from "@/src/hooks/useTodayAppointments";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 export default function TodayScreen() {

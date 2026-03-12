@@ -2,7 +2,7 @@ import { useAuth } from "@/src/auth/AuthProvider";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { authApi } from "../src/api/auth";
+import { authApi } from "../api/auth";
 
 export default function LoginScreen() {
   const router = useRouter();
