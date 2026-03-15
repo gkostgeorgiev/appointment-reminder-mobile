@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { Stack, Tabs } from "expo-router";
 import React from "react";
 
 import { HapticTab } from "@/src/components/haptic-tab";
@@ -35,6 +35,7 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen name="schedule/[id]" options={{ href: null }} />
     </Tabs>
   );
 }
