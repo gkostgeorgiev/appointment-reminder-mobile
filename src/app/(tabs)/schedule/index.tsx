@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native";
 import { ActivityIndicator, Card, FAB, Text } from "react-native-paper";
 
 import { getTodayAppointments } from "@/src/services/appointment";
-import { Appointment } from "@/src/types/appointment";
+import { Appointment } from "@/src/types";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -12,6 +12,7 @@ export default function ScheduleScreen() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function load(showSpinner = false) {
     if (showSpinner) {
@@ -19,10 +20,14 @@ export default function ScheduleScreen() {
     } else {
       setIsRefreshing(true);
     }
+    setErrorMessage(null);
 
     try {
       const data = await getTodayAppointments();
       setAppointments(data);
+    } catch (error) {
+      console.error("Failed to load appointments", error);
+      setErrorMessage("Could not load appointments. Pull down to retry.");
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
@@ -50,6 +55,11 @@ export default function ScheduleScreen() {
             keyExtractor={(item) => item._id}
             refreshing={isRefreshing}
             onRefresh={() => load()}
+            ListHeaderComponent={
+              errorMessage ? (
+                <Text className="mb-3 text-red-600">{errorMessage}</Text>
+              ) : null
+            }
             ListEmptyComponent={
               <View className="items-center mt-20">
                 <Text>No appointments today</Text>

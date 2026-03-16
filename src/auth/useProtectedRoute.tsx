@@ -18,7 +18,7 @@ export function useProtectedRoute() {
     }
 
     if (token && inAuthGroup) {
-      router.replace("/(tabs)");
+      router.replace("/(tabs)/schedule");
     }
   }, [token, loading, segments, router]);
 }

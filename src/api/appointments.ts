@@ -1,4 +1,4 @@
-import { Appointment } from "@/src/types/appointment";
+import { Appointment } from "@/src/types";
 import { apiClient } from "./client";
 
 export async function getTodaysAppointments(): Promise<Appointment[]> {

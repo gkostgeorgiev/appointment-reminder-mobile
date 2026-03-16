@@ -40,11 +40,11 @@ apiClient.interceptors.response.use(
 );
 
 apiClient.interceptors.request.use((config) => {
-  console.log("API REQUEST:", config.method, config.url, config.data);
+  console.log("API REQUEST:", config.method, config.url);
   return config;
 });
 
 apiClient.interceptors.response.use((response) => {
-  console.log("API RESPONSE:", response.status, response.config.url, response);
+  console.log("API RESPONSE:", response.status, response.config.url);
   return response;
 });

@@ -1,4 +1,4 @@
-import { Appointment } from "@/src/types/appointment";
+import { Appointment } from "@/src/types";
 
 export const mockAppointments: Appointment[] = [
   {
@@ -9,7 +9,7 @@ export const mockAppointments: Appointment[] = [
       firstName: "Maria",
       lastName: "Ivanova",
       phone: "+359888123456",
-      email: "maria@example.com"
+      email: "maria@example.com",
     },
     start: "2026-03-12T09:00:00Z",
     duration: 30,
@@ -18,7 +18,7 @@ export const mockAppointments: Appointment[] = [
     status: "scheduled",
     reminderSent: false,
     createdAt: "2026-03-01T10:00:00Z",
-    updatedAt: "2026-03-01T10:00:00Z"
+    updatedAt: "2026-03-01T10:00:00Z",
   },
   {
     _id: "2",
@@ -27,7 +27,7 @@ export const mockAppointments: Appointment[] = [
       _id: "c2",
       firstName: "Georgi",
       lastName: "Petrov",
-      phone: "+359888555555"
+      phone: "+359888555555",
     },
     start: "2026-03-12T10:00:00Z",
     duration: 60,
@@ -36,7 +36,7 @@ export const mockAppointments: Appointment[] = [
     status: "scheduled",
     reminderSent: true,
     createdAt: "2026-03-01T10:00:00Z",
-    updatedAt: "2026-03-01T10:00:00Z"
+    updatedAt: "2026-03-01T10:00:00Z",
   },
   {
     _id: "3",
@@ -45,7 +45,7 @@ export const mockAppointments: Appointment[] = [
       _id: "c3",
       firstName: "Elena",
       lastName: "Dimitrova",
-      phone: "+359888999999"
+      phone: "+359888999999",
     },
     start: "2026-03-12T13:30:00Z",
     duration: 45,
@@ -54,6 +54,6 @@ export const mockAppointments: Appointment[] = [
     status: "scheduled",
     reminderSent: false,
     createdAt: "2026-03-01T10:00:00Z",
-    updatedAt: "2026-03-01T10:00:00Z"
-  }
-]
+    updatedAt: "2026-03-01T10:00:00Z",
+  },
+];
