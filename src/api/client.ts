@@ -1,16 +1,17 @@
+import { apiOrigin, apiV1Origin } from "@/src/config/api";
 import axios from "axios";
-import { getToken } from "../auth/tokenStorage";
 import { triggerLogout } from "../auth/authEvents";
+import { getToken } from "../auth/tokenStorage";
 
 export const apiBase = axios.create({
-  baseURL: "http://10.0.2.2:5000",
+  baseURL: apiOrigin,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const apiClient = axios.create({
-  baseURL: "http://10.0.2.2:5000/api/v1",
+  baseURL: apiV1Origin,
   headers: {
     "Content-Type": "application/json",
   },

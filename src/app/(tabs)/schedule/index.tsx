@@ -11,18 +11,26 @@ export default function ScheduleScreen() {
   const router = useRouter();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  useEffect(() => {
-    async function load() {
-      try {
-        const data = await getTodayAppointments();
-        setAppointments(data);
-      } finally {
-        setIsLoading(false);
-      }
+  async function load(showSpinner = false) {
+    if (showSpinner) {
+      setIsLoading(true);
+    } else {
+      setIsRefreshing(true);
     }
 
-    load();
+    try {
+      const data = await getTodayAppointments();
+      setAppointments(data);
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  }
+
+  useEffect(() => {
+    load(true);
   }, []);
 
   return (
@@ -40,6 +48,8 @@ export default function ScheduleScreen() {
           <FlatList
             data={appointments}
             keyExtractor={(item) => item._id}
+            refreshing={isRefreshing}
+            onRefresh={() => load()}
             ListEmptyComponent={
               <View className="items-center mt-20">
                 <Text>No appointments today</Text>
@@ -80,7 +90,7 @@ export default function ScheduleScreen() {
       </View>
       <FAB
         icon="plus"
-        onPress={() => console.log("Clicked on the FAB button")}
+        onPress={() => router.push("/appointments/book")}
         className="absolute right-4 bottom-4 bg-blue-200"
       />
     </SafeAreaView>
