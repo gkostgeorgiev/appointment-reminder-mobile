@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
-import { ActivityIndicator, Appbar, Card, Text } from "react-native-paper";
+import { ActivityIndicator, Card, FAB, Text } from "react-native-paper";
 
 import { getTodayAppointments } from "@/src/services/appointment";
 import { Appointment } from "@/src/types/appointment";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MainAppBar from "@/src/components/ui/MainAppBar";
 
 export default function ScheduleScreen() {
   const router = useRouter();
@@ -28,8 +27,6 @@ export default function ScheduleScreen() {
 
   return (
     <SafeAreaView className="flex-1">
-      <MainAppBar />
-
       <View className="flex-1 px-4 pt-2">
         <Text variant="headlineSmall" className="mb-4">
           Today
@@ -53,7 +50,7 @@ export default function ScheduleScreen() {
                 className="mb-3"
                 onPress={() =>
                   router.push({
-                    pathname: "/(tabs)/schedule/[id]",
+                    pathname: "/appointments/[id]",
                     params: { id: item._id },
                   })
                 }
@@ -81,6 +78,11 @@ export default function ScheduleScreen() {
           />
         )}
       </View>
+      <FAB
+        icon="plus"
+        onPress={() => console.log("Clicked on the FAB button")}
+        className="absolute right-4 bottom-4 bg-blue-200"
+      />
     </SafeAreaView>
   );
 }

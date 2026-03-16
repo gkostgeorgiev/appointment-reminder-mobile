@@ -5,7 +5,8 @@ import { Button, Card, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AppointmentDetailsScreen() {
-  const { id } = useLocalSearchParams();
+  const router = useRouter();
+  const { id } = useLocalSearchParams<{ id: string }>();
 
   // mock data for now
   const appointment = {
@@ -42,11 +43,25 @@ export default function AppointmentDetailsScreen() {
           </Card.Content>
         </Card>
 
-        <Button mode="contained" className="mb-3">
+        <Button
+          mode="contained"
+          className="mb-3"
+          onPress={() =>
+            router.push({
+              pathname: "/appointments/[id]/edit",
+              params: { id },
+            })
+          }
+        >
           Edit Appointment
         </Button>
 
-        <Button mode="outlined">Delete Appointment</Button>
+        <Button
+          mode="outlined"
+          onPress={() => console.log("Pressed delete appointment")}
+        >
+          Delete Appointment
+        </Button>
       </View>
     </SafeAreaView>
   );
