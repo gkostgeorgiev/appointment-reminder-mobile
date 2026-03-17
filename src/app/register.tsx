@@ -28,7 +28,7 @@ export default function RegisterScreen() {
 
       await establishSession(token);
 
-      router.replace("/(tabs)");
+      router.replace("/(tabs)/schedule");
     } catch (err) {
       console.log("REGISTER ERROR:", err);
     } finally {
