@@ -5,6 +5,7 @@ import { getToken } from "../auth/tokenStorage";
 
 export const apiBase = axios.create({
   baseURL: apiOrigin,
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,6 +13,7 @@ export const apiBase = axios.create({
 
 export const apiClient = axios.create({
   baseURL: apiV1Origin,
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },

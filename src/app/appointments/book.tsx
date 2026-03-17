@@ -149,15 +149,17 @@ export default function BookAppointmentScreen() {
               Appointment details
             </Text>
 
-            <TextInput
-              mode="outlined"
-              label="Date and time"
-              placeholder="2026-03-20 14:30"
-              value={dateTime}
-              onChangeText={setDateTime}
-              dense
-              className="mb-3"
-            />
+            <View className="mb-4">
+              <TextInput
+                mode="outlined"
+                label="Date and time"
+                placeholder="2026-03-20 14:30"
+                value={dateTime}
+                onChangeText={setDateTime}
+                dense
+                className="mb-3"
+              />
+            </View>
 
             <TextInput
               mode="outlined"

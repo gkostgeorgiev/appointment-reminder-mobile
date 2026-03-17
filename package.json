@@ -6,6 +6,10 @@
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
+    "android:dev": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-android.ps1 -AutoReload",
+    "android:dev:clean": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-android.ps1 -CleanCache -AutoReload",
+    "android:dev:auto": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-android.ps1 -CleanCache -AutoReload",
+    "android:nuclear": "powershell -ExecutionPolicy Bypass -File ./scripts/android-nuclear-reset.ps1",
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint"
@@ -44,6 +48,7 @@
     "react-native-worklets": "0.5.1"
   },
   "devDependencies": {
+    "@react-native-community/cli": "latest",
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",

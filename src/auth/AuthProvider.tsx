@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { getToken, saveToken, deleteToken } from "./tokenStorage";
-import { setLogoutHandler } from "./authEvents";
 import { router } from "expo-router";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { setLogoutHandler } from "./authEvents";
+import { deleteToken, getToken, saveToken } from "./tokenStorage";
 
 type AuthContextType = {
   token: string | null;
@@ -18,9 +18,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     async function loadToken() {
-      const storedToken = await getToken();
-      setToken(storedToken);
-      setLoading(false);
+      try {
+        const storedToken = await getToken();
+        setToken(storedToken);
+      } catch (error) {
+        console.error("Failed to initialize auth session", error);
+        setToken(null);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadToken();
