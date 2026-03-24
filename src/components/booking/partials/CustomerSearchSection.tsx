@@ -1,6 +1,7 @@
 import { Customer } from "@/src/types";
+import { useRouter } from "expo-router";
 import { FlatList } from "react-native";
-import { Card, Text, TextInput } from "react-native-paper";
+import { Button, Card, Text, TextInput } from "react-native-paper";
 
 interface CustomerSearchSectionProps {
   query: string;
@@ -8,6 +9,8 @@ interface CustomerSearchSectionProps {
   queryError: string | null;
   customers: Customer[];
   isSearching: boolean;
+  isDebouncing: boolean;
+  hasSettledSearchForCurrentQuery: boolean;
   onSelectCustomer: (customer: Customer) => void;
 }
 
@@ -17,8 +20,25 @@ export function CustomerSearchSection({
   queryError,
   customers,
   isSearching,
+  isDebouncing,
+  hasSettledSearchForCurrentQuery,
   onSelectCustomer,
 }: CustomerSearchSectionProps) {
+  const router = useRouter();
+
+  const NoCustomerFoundSection = () => {
+    return (
+      <>
+        <Text className="text-slate-500 mt-4 mb-6 self-center">
+          No customers found.
+        </Text>
+        <Button mode="contained" onPress={() => router.push("/customers/add")}>
+          Add Customer
+        </Button>
+      </>
+    );
+  };
+
   return (
     <>
       <TextInput
@@ -45,8 +65,12 @@ export function CustomerSearchSection({
         scrollEnabled={false}
         className="mt-4"
         ListEmptyComponent={
-          query.trim() && !queryError && !isSearching ? (
-            <Text className="text-slate-500">No customers found.</Text>
+          hasSettledSearchForCurrentQuery &&
+          customers.length === 0 &&
+          !queryError &&
+          !isSearching &&
+          !isDebouncing ? (
+            <NoCustomerFoundSection />
           ) : null
         }
         renderItem={({ item }) => (

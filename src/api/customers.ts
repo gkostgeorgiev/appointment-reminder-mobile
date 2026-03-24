@@ -1,6 +1,13 @@
 import { Customer } from "../types";
 import { apiClient } from "./client";
 
+export type CreateCustomerPayload = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email?: string;
+};
+
 function getCustomerSearchParams(userInput: string) {
   const trimmedInput = userInput.trim();
   const hasLetters = /[a-zA-Z]/.test(trimmedInput);
@@ -33,5 +40,12 @@ export async function getCustomers(userInput: string): Promise<Customer[]> {
   }
 
   const response = await apiClient.get("/customers", { params });
+  return response.data.data;
+}
+
+export async function createCustomer(
+  payload: CreateCustomerPayload,
+): Promise<Customer> {
+  const response = await apiClient.post("/customers", payload);
   return response.data.data;
 }

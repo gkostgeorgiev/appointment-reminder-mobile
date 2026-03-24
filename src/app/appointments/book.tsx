@@ -16,6 +16,8 @@ export default function BookAppointmentScreen() {
     queryError,
     customers,
     isSearching,
+    isDebouncing,
+    hasSettledSearchForCurrentQuery,
     selectedCustomer,
     selectCustomer,
     resetCustomer,
@@ -76,6 +78,8 @@ export default function BookAppointmentScreen() {
               queryError={queryError}
               customers={customers}
               isSearching={isSearching}
+              isDebouncing={isDebouncing}
+              hasSettledSearchForCurrentQuery={hasSettledSearchForCurrentQuery}
               onSelectCustomer={selectCustomer}
             />
           )}
